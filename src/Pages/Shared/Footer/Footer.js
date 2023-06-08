@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <div>
-      <p><small>Copyright @2023</small></p>
+      <p style={{textAlign:'center',marginTop:'100px'}}><small>Copyright @2023</small></p>
     </div>
   );
 };

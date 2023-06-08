@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import TopSideNav from '../TopSideNav/TopSideNav';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
+import { Image } from 'react-bootstrap';
+import { FaUserAlt } from 'react-icons/fa';
+import Button from 'react-bootstrap/Button';
+
 const Header = () => {
+  const {user,logOut} = useContext(AuthContext);
+  const handleLogOut = () => {
+   logOut();
+  }
   return (
     <Navbar bg="light" expand="lg">
     <Container>
@@ -30,6 +40,34 @@ const Header = () => {
         <div className='d-lg-none'>
           <TopSideNav></TopSideNav>
         </div>
+        {
+          user?.uid ? 
+          <Nav>
+          <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+         
+         {user.photoURL ?
+          <Image roundedCircle style={{height:'30px'}}  src={user.photoURL} alt='Null'></Image>
+          :
+          <FaUserAlt></FaUserAlt>
+         }
+         <Button onClick={handleLogOut} className='ms-4' variant="primary">LogOut</Button>
+      
+        </Nav> 
+        :
+    <>
+     
+    <Link className='mx-2' to='/login'>Login</Link>
+
+    <Link to='/register'>Register</Link>
+  
+    </>
+    
+        
+     
+}
+        
+     
+       
       </Navbar.Collapse>
     </Container>
   </Navbar>

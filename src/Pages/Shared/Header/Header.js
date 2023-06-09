@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,12 +10,18 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { Image } from 'react-bootstrap';
 import { FaUserAlt } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
+import Mode from '../../Others/Mode/Mode';
 
 const Header = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const {user,logOut} = useContext(AuthContext);
   const handleLogOut = () => {
    logOut();
   }
+  const handleDarkModeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+ 
+  };
   return (
     <Navbar bg="light" expand="lg">
     <Container>
@@ -23,8 +29,8 @@ const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link to="/">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/blog">Blog</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
@@ -67,7 +73,9 @@ const Header = () => {
 }
         
      
-       
+<button className='ms-4' onClick={handleDarkModeToggle}>
+      {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+    </button> 
       </Navbar.Collapse>
     </Container>
   </Navbar>

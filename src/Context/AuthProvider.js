@@ -39,7 +39,7 @@ const logOut = () => {
 useEffect(()=> {
   const unsubscribe = onAuthStateChanged(auth,newUser => {
     console.log('auth change' , newUser);
-    if(newUser.emailVerified){
+    if(newUser?.emailVerified){
       setUser(newUser);
     }
     

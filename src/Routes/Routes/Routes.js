@@ -8,6 +8,8 @@ import Register from "../../Pages/Login/Register/Register";
 import ErrorPage from "../../Error/ErrorPage";
 import PrivateRoutes from "../PrivateRoutes";
 import TermsAndConditions from "../../Pages/Others/TermsAndConditions/TermsAndConditions";
+import Blogs from "../../Pages/Blogs/Blogs";
+import Mode from "../../Pages/Others/Mode/Mode";
 
 export const routes = createBrowserRouter([
   {
@@ -22,13 +24,13 @@ export const routes = createBrowserRouter([
       {
         path:'/categories/:id',
         element:<LeftSideNav></LeftSideNav>,
-        loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
+        loader: ({params}) => fetch(`https://learning-server-site-hrshihab.vercel.app/categories/${params.id}`)
         
       },
       {
         path:'/topics/:topicId',
         element:<PrivateRoutes><MiddleSideNav></MiddleSideNav></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/topics/${params.topicId}`)
+        loader: ({params}) => fetch(`https://learning-server-site-hrshihab.vercel.app/topics/${params.topicId}`)
       },
       {
         path:'/login',
@@ -40,6 +42,10 @@ export const routes = createBrowserRouter([
       },{
         path:'/terms',
         element:<TermsAndConditions></TermsAndConditions>
+      },
+      {
+        path:'/blog',
+        element:<Blogs></Blogs>
       }
 
     ]

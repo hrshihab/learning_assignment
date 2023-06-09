@@ -71,11 +71,14 @@ verifyEmail()
       <Form.Control name='password' type="password" placeholder="Password" required/>
     </Form.Group>
     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-      <Form.Check onClick={handleAccepted} type="checkbox" label={<>Accept <Link to='/terms'>Terms and Conditions</Link></>} />
+      <Form.Check 
+      onClick={handleAccepted} type="checkbox" 
+      label={<>Accept <Link to='/terms'>Terms and Conditions</Link></>} />
     </Form.Group>
     <Button variant="primary" type="submit" disabled={!accepted}>
       Submit
     </Button>
+    <p><small>Don't Have an account ? <Link to='/login'>login</Link></small></p>
 
     <Form.Text className="text-danger">
         {error}
